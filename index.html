@@ -52,7 +52,7 @@
                 const stringElement = strings[i]
                 const name = stringElement.getAttributeNode("name").value
                 const value = stringElement.childNodes[0].nodeValue
-                iosStrings += "\"" + name + "\" = \"" + value.replace("%s", "%@") + "\""
+                iosStrings += "\"" + name + "\" = \"" + value.replace("%s", "%@") + "\";"
                 if (i < strings.length - 1) {
                     iosStrings += "\n"
                 }
