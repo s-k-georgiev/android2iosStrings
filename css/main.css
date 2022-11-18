@@ -2,16 +2,31 @@ div {
     display: grid;
 }
 
-button {
+.btn-group {
     width: 93%;
     height: 40pt;
     margin-top: 50px;
     margin-bottom: 30px;
 }
 
+#convert {
+    width: 90%;
+}
+
+#copy {
+    color: rgb(57, 31, 202);
+    background-color: transparent;
+    border-color: rgb(57, 31, 202);
+}
+
 #outer {
     width: 100%;
     text-align: center;
+}
+
+#input::placeholder {
+    color: rgba(0, 81, 255, 0.212);
+    opacity: 1;
 }
 
 #inner {

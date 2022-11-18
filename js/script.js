@@ -3,9 +3,12 @@ const outputLabel = document.getElementById("output-label")
 const input = document.getElementById("input")
 const output = document.getElementById("output")
 const checkbox = document.getElementById("checkbox")
-const button = document.getElementById("button")
+const convert = document.getElementById("convert")
+const copy = document.getElementById("copy")
 const title = document.getElementById("title")
 const alert = document.getElementById("alert")
+
+let covertedString = ""
 
 onCheckboxClicked()
 
@@ -31,7 +34,7 @@ function convertAndroid2IOS() {
             iosStrings += "\n"
         }
     }
-    copyToClipboard(iosStrings)
+    output.value = iosStrings
 }
 
 function convertIOS2Android() {
@@ -39,24 +42,23 @@ function convertIOS2Android() {
         .replace("  ", "")
         .replace("\n", "")
         .split(";")
-    let iosStrings = ""
+    let androidStrings = ""
     for (i = 0; i < strings.length; i++) {
         const stringElement = strings[i]
         const nameAndValue = stringElement.split("=")
         if (nameAndValue.length == 2) {
             const name = getStringBetweenQuotationMarks(nameAndValue[0])
             const value = getStringBetweenQuotationMarks(nameAndValue[1]).replace("%@", "%s")
-            iosStrings += `<string name="${name}">${value}</string>`
+            androidStrings += `<string name="${name}">${value}</string>`
             if (i < strings.length - 1) {
-                iosStrings += "\n"
+                androidStrings += "\n"
             }
         }
     }
-    copyToClipboard(iosStrings)
+    output.value = androidStrings
 }
 
-function copyToClipboard(string) {
-    output.value = string
+function copyToClipboard() {
     output.select();
     output.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(output.value);
@@ -97,10 +99,14 @@ checkbox.onclick = (e) => {
     onCheckboxClicked()
 }
 
-button.onclick = (e) => {
+convert.onclick = (e) => {
     if (checkbox.checked) {
         convertAndroid2IOS()
     } else {
         convertIOS2Android()
     }
+}
+
+copy.onclick = (e) => {
+    copyToClipboard(covertedString)
 }
