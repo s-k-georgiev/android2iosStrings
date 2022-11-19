@@ -2,7 +2,7 @@ div {
     display: grid;
 }
 
-.btn-group {
+#button-group {
     width: 93%;
     height: 40pt;
     margin-top: 50px;
